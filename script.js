@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const gridSize = 100;
         const nBombs = 16;
         const whereBombs = genArrayRandomNum (1,100, 16);
+        let score = 0;
 
 
         for (let i = 1; i <= 100; i++) {
@@ -53,10 +54,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     //che succede qui? Me la colora normalmente?
                     newElement.classList.add("clicked");
-                    console.log("Hai cliccato la casella col numero " + newElement.textContent);
+                    score++;
+                    console.log(score);
                 }
 
                 explodeBomb(newElement);
+
+                if (score === gridSize - nBombs) {
+                    endGame(true);
+                }
                 
             });
 
@@ -94,6 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function endGame(victory) {
         if (!victory) {
             alert("Hai perso! Riprova");
+        } else {
+            alert("Hai vinto, il tuo punteggio è: " + score);
         }
         // Resetta il gioco
         playButton.disabled = false;
