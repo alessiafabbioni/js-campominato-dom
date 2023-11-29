@@ -33,14 +33,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const gridSize = 100;
         const nBombs = 16;
-        const whereBombs = genArrayRandomNum (1,100, 16)
-
-
+        const whereBombs = genArrayRandomNum (1,100, 16);
 
 
         for (let i = 1; i <= 100; i++) {
             const newElement = createmyElement("div", "grid-box");
             newElement.textContent = i;
+
+            if (whereBombs.includes(i)) {
+                newElement.classList.add("bomb");
+            }
 
             
             newElement.addEventListener("click", function () {
