@@ -43,9 +43,16 @@ document.addEventListener('DOMContentLoaded', function () {
             if (whereBombs.includes(i)) {
                 newElement.classList.add("bomb");
             }
-
             
             newElement.addEventListener("click", function () {
+                if (newElement.classList.contains("bomb")) {
+                    showBomb(newElement);
+                    //da inserire anche la funzione di fine gioco qui
+                } else {
+                    //che minchia succede qui? Me la colora normalmente?
+                }
+                
+                
                 newElement.classList.add("clicked");
                 console.log("Hai cliccato la casella col numero " + newElement.textContent);
             });
