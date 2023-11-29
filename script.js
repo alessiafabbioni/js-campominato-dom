@@ -91,9 +91,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Aggiungo la funzione che mi finisce il gioco
 
-    function endGame() {
+    function endGame(victory) {
         if (!victory) {
-            alert("Game Over! You clicked on a bomb.");
+            alert("Hai perso! Riprova");
         }
         // Resetta il gioco
         playButton.disabled = false;
