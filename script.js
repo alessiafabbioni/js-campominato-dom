@@ -31,9 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         gridElement.innerHTML = "";
 
-        const gridLength = 100;
+        const gridSize = 100;
         const nBombs = 16;
-        
+        const whereBombs = genArrayRandomNum (1,100, 16)
+
 
 
 
@@ -57,29 +58,36 @@ document.addEventListener('DOMContentLoaded', function () {
         currentElemnt.classList.add(classname);
         return currentElemnt;
     }
+
+    //Funzione ordinamento randomico array
+    function genArrayRandomNum (minNum, maxNum, lengthArr) {
+        const arryRandomNum = [];
+    
+        while (arryRandomNum.length < lengthArr) {
+            let genNum = randomNum(minNum, maxNum);
+            
+            if (!arryRandomNum.includes(newNumber)) {
+                arryRandomNum.push(newNumber);
+            }
+        }
+    
+        return arryRandomNum;
+    }
+
+    //Funzione creazione numeri random
+
+    function randomNum (min, max) {
+    return Math.floor(Math.random() * (max - min +1)) + min;
+}
+
+
 });
 
 
-//Funzione ordinamento randomico array
-
-/*function genArrayRandomNum (minNum, maxNum, lengthArr) {
-    const arryRandomNum = [];
-
-    while (arryRandomNum.length < lengthArr) {
-        let genNum = randomNum(minNum, maxNum);
-        
-        if (!arryRandomNum.includes(newNumber)) {
-            arryRandomNum.push(newNumber);
-        }
-    }
-
-    return arryRandomNum;
-}
-*/
 
 
-//Funzione creazione numeri random
 
-function randomNum (min, max) {
-    return Math.floor(Math.random() * (max - min +1)) + min;
-}
+
+
+
+
