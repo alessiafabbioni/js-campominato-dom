@@ -45,16 +45,19 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             
             newElement.addEventListener("click", function () {
+
                 if (newElement.classList.contains("bomb")) {
                     showBomb(newElement);
-                    //da inserire anche la funzione di fine gioco qui
+                    endGame(false);
+                    console.log("Hai perso")
                 } else {
-                    //che minchia succede qui? Me la colora normalmente?
+                    //che succede qui? Me la colora normalmente?
+                    newElement.classList.add("clicked");
+                    console.log("Hai cliccato la casella col numero " + newElement.textContent);
                 }
+
+                explodeBomb(newElement);
                 
-                
-                newElement.classList.add("clicked");
-                console.log("Hai cliccato la casella col numero " + newElement.textContent);
             });
 
             gridElement.append(newElement);
@@ -68,19 +71,52 @@ document.addEventListener('DOMContentLoaded', function () {
         return currentElemnt;
     }
 
+
+
+    //Aggiungo la funzione show bomb
+    function showBomb (bombElement) {
+        if (!bombElement.classList.contains("clicked")) {
+            bombElement.classList.add("clicked", "bomb");
+            console.log("Hai perso")
+        }
+    }
+
+    //Aggiungo la funzione che mi fa vedere la cella colorata
+    function explodeBomb(element) {
+        if (element.classList.contains("clicked") && element.classList.contains("bomb")) {
+            element.style.backgroundColor = "red";
+        }
+    }
+
+
+    //Aggiungo la funzione che mi finisce il gioco
+
+    function endGame() {
+        if (!victory) {
+            alert("Game Over! You clicked on a bomb.");
+        }
+        // Resetta il gioco
+        playButton.disabled = false;
+    }
+
+
     //Funzione ordinamento randomico array
+
+
     function genArrayRandomNum (minNum, maxNum, lengthArr) {
-        const arryRandomNum = [];
+        const whereBombs = [];
     
-        while (arryRandomNum.length < lengthArr) {
-            let genNum = randomNum(minNum, maxNum);
+        while (whereBombs.length < lengthArr) {
+            let newNumber = randomNum(minNum, maxNum);
             
-            if (!arryRandomNum.includes(newNumber)) {
-                arryRandomNum.push(newNumber);
+            if (!whereBombs.includes(newNumber)) {
+                whereBombs.push(newNumber);
             }
         }
-    
-        return arryRandomNum;
+
+
+        console.log(whereBombs);
+        return whereBombs;
     }
 
     //Funzione creazione numeri random
